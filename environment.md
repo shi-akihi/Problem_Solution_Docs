@@ -30,3 +30,18 @@ fatal error: NvInfer.h: No such file or directory
 # add the TensorRT include path in ~/.bashrc as follow
 export CPATH=/usr/local/tensorrt/include:$CPATH
 ```
+
+## Can't find cuda/tensorrt in cmake
+
+### Problem
+```
+/usr/bin/ld:cannot find -lcuda: No such file or directory
+```
+
+### Solution
+```bash
+# add the path to both ld_library_path and library_path
+# wsl for example
+export LIBRARY_PATH=/usr/lib/wsl/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
+```
