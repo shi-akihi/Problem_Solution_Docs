@@ -45,3 +45,25 @@ export CPATH=/usr/local/tensorrt/include:$CPATH
 export LIBRARY_PATH=/usr/lib/wsl/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
 ```
+
+## gpg key error in change apt source list 
+
+### Problem 
+```
+W: GPG error: http://mirrors.tuna.tsinghua.edu.cn/ubuntu xenial InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32
+E: The repository 'http://mirrors.tuna.tsinghua.edu.cn/ubuntu xenial InRelease' is not signed.
+```
+
+### Solution
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+```
+
+May cause warning when run `sudo apt update`, which can be solved by the following commands. 
+
+```bash
+cd /etc/apt
+sudo cp trusted.gpg trusted.gpg.d
+```
+
